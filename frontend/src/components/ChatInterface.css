@@ -6,6 +6,26 @@
   background: #ffffff;
 }
 
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fafafa;
+}
+
+.chat-header-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  margin-right: 16px;
+}
+
 .messages-container {
   flex: 1;
   overflow-y: auto;
@@ -160,4 +180,78 @@
   cursor: not-allowed;
   background: #ccc;
   border-color: #ccc;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  .chat-interface {
+    height: auto;
+    overflow: visible;
+  }
+
+  .chat-header {
+    display: none;
+  }
+
+  .messages-container {
+    overflow: visible;
+    padding: 0;
+  }
+
+  .input-form {
+    display: none;
+  }
+
+  .loading-indicator,
+  .stage-loading {
+    display: none;
+  }
+
+  .spinner {
+    display: none;
+  }
+
+  .message-group {
+    page-break-inside: avoid;
+    margin-bottom: 24px;
+  }
+
+  .user-message .message-content {
+    max-width: 100%;
+    background: #f8f8f8;
+    border-color: #ccc;
+  }
+
+  /* Stage containers for print */
+  .stage {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+
+/* JS-triggered print mode for ChatInterface */
+body.printing-mode .chat-interface {
+  height: auto;
+  overflow: visible;
+}
+
+body.printing-mode .chat-header {
+  display: none;
+}
+
+body.printing-mode .messages-container {
+  overflow: visible;
+  padding: 0;
+  height: auto;
+}
+
+body.printing-mode .input-form {
+  display: none;
+}
+
+body.printing-mode .loading-indicator,
+body.printing-mode .stage-loading {
+  display: none;
 }

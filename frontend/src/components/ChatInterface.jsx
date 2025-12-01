@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import Stage1 from './Stage1';
 import Stage2 from './Stage2';
 import Stage3 from './Stage3';
+import ExportMenu from './ExportMenu';
 import './ChatInterface.css';
 
 export default function ChatInterface({
@@ -50,6 +51,16 @@ export default function ChatInterface({
 
   return (
     <div className="chat-interface">
+      {/* Header with export button */}
+      {conversation.messages.length > 0 && (
+        <div className="chat-header">
+          <div className="chat-header-title">
+            {conversation.title || 'Conversation'}
+          </div>
+          <ExportMenu conversation={conversation} />
+        </div>
+      )}
+
       <div className="messages-container">
         {conversation.messages.length === 0 ? (
           <div className="empty-state">

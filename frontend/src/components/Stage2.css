@@ -151,3 +151,92 @@
   color: #999;
   font-size: 12px;
 }
+
+/* All evaluations container - hidden on screen, shown when printing */
+.stage2 .print-all-evaluations {
+  display: none;
+}
+
+/* Screen-only content (hidden when printing) */
+.stage2 .screen-only {
+  display: flex;
+}
+
+.stage2 .tab-content.screen-only {
+  display: block;
+}
+
+/* Print evaluation item base styles */
+.print-evaluation-item {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #ddd;
+}
+
+.print-evaluation-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.print-evaluator-name {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.print-evaluator-full {
+  font-size: 11px;
+  color: #888;
+  font-family: monospace;
+  margin-bottom: 12px;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  .stage2 .screen-only,
+  .stage2 .tabs.screen-only,
+  .stage2 .tab-content.screen-only {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .stage2 .print-all-evaluations {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .stage2 {
+    background: #fff;
+    border: 1px solid #ccc;
+  }
+
+  .aggregate-rankings {
+    background: #f8f8f8;
+    border-color: #ccc;
+    break-inside: avoid-page;
+  }
+
+  .aggregate-item {
+    background: #fff;
+    border-color: #ddd;
+  }
+
+  .stage2 .print-evaluation-item {
+    break-inside: avoid-page;
+  }
+}
+
+/* JS-triggered print mode */
+body.printing-mode .stage2 .screen-only,
+body.printing-mode .stage2 .tabs.screen-only,
+body.printing-mode .stage2 .tab-content.screen-only {
+  display: none !important;
+}
+
+body.printing-mode .stage2 .print-all-evaluations {
+  display: block !important;
+}

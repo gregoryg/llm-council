@@ -63,3 +63,82 @@
   color: #333;
   line-height: 1.6;
 }
+
+/* All responses container - hidden on screen, shown when printing */
+.stage1 .print-all-responses {
+  display: none;
+}
+
+/* Screen-only content (hidden when printing) */
+.stage1 .screen-only {
+  display: flex;
+}
+
+.stage1 .tab-content.screen-only {
+  display: block;
+}
+
+/* Print response item base styles */
+.print-response-item {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #ddd;
+}
+
+.print-response-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.print-model-name {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.print-model-full {
+  font-size: 11px;
+  color: #888;
+  font-family: monospace;
+  margin-bottom: 12px;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  .stage1 .screen-only,
+  .stage1 .tabs.screen-only,
+  .stage1 .tab-content.screen-only {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .stage1 .print-all-responses {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .stage1 {
+    background: #fff;
+    border: 1px solid #ccc;
+    break-inside: avoid-page;
+  }
+
+  .stage1 .print-response-item {
+    break-inside: avoid-page;
+  }
+}
+
+/* JS-triggered print mode */
+body.printing-mode .stage1 .screen-only,
+body.printing-mode .stage1 .tabs.screen-only,
+body.printing-mode .stage1 .tab-content.screen-only {
+  display: none !important;
+}
+
+body.printing-mode .stage1 .print-all-responses {
+  display: block !important;
+}

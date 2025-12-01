@@ -28,6 +28,51 @@ body {
   overflow: hidden;
 }
 
+/* ========================================
+   CRITICAL PRINT OVERRIDES
+   ======================================== */
+@media print {
+  html, body {
+    height: auto !important;
+    width: auto !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #root {
+    height: auto !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Force print-only content to show */
+  .print-only {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  /* Force screen-only content to hide */
+  .screen-only {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+/* ========================================
+   PRINTING MODE (JS-triggered before print)
+   Allows us to manipulate DOM before print dialog
+   ======================================== */
+body.printing-mode .print-only {
+  display: block !important;
+  visibility: visible !important;
+}
+
+body.printing-mode .screen-only {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 /* Global markdown styling */
 .markdown-content {
   padding: 12px;

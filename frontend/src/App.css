@@ -13,3 +13,131 @@
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 }
+
+/* ========================================
+   GLOBAL PRINT STYLES
+   ======================================== */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .app {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Hide sidebar when printing */
+  .sidebar {
+    display: none !important;
+  }
+
+  /* Full width for main content */
+  .chat-interface {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+
+  /* Hide sidebar when printing */
+  .sidebar {
+    display: none !important;
+  }
+
+  /* Full width for main content */
+  .chat-interface {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Improve typography for print */
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  h1 { font-size: 18pt; }
+  h2 { font-size: 16pt; }
+  h3 { font-size: 14pt; }
+  h4 { font-size: 12pt; }
+
+  /* Ensure links are readable */
+  a {
+    color: #333 !important;
+    text-decoration: underline;
+  }
+
+  /* Code blocks */
+  pre, code {
+    font-size: 10pt;
+    background: #f5f5f5 !important;
+    border: 1px solid #ddd !important;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    page-break-inside: avoid;
+  }
+
+  /* Markdown content improvements */
+  .markdown-content {
+    font-size: 12pt;
+    line-height: 1.6;
+  }
+
+  .markdown-content h1,
+  .markdown-content h2,
+  .markdown-content h3,
+  .markdown-content h4 {
+    page-break-after: avoid;
+  }
+
+  .markdown-content p,
+  .markdown-content li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-content ul,
+  .markdown-content ol {
+    page-break-inside: avoid;
+  }
+}
+
+/* ========================================
+   JS-TRIGGERED PRINT MODE
+   Applied via body.printing-mode class
+   ======================================== */
+body.printing-mode .sidebar {
+  display: none !important;
+}
+
+body.printing-mode .chat-interface {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.printing-mode .input-form,
+body.printing-mode .chat-header {
+  display: none !important;
+}
+
+body.printing-mode .messages-container {
+  overflow: visible !important;
+  height: auto !important;
+}
